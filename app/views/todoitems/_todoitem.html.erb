@@ -1,22 +1,15 @@
 <div id="<%= dom_id todoitem %>">
-  <p>
-    <strong>Name:</strong>
-    <%= todoitem.name %>
-  </p>
-
-  <p>
-    <strong>Description:</strong>
-    <%= todoitem.description %>
-  </p>
-
-  <p>
-    <strong>Deadline:</strong>
-    <%= todoitem.deadline %>
-  </p>
-
-  <p>
-    <strong>Completed:</strong>
-    <%= todoitem.completed %>
-  </p>
-
+  <tbody>
+    <tr>
+      <td><%= todoitem.name %></td>
+      <td><%= todoitem.description %></td>
+      <td><%= todoitem.deadline %></td>
+      <td><%= todoitem.completed %></td>
+      <td>
+        <p>
+          <%= link_to "Show this todo", todoitem %>
+        </p>
+      </td>
+    </tr>
+  </tbody>
 </div>
