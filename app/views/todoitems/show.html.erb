@@ -2,9 +2,18 @@
 
 <%= render @todoitem %>
 
-<div>
-  <%= link_to "Edit this todoitem", edit_todoitem_path(@todoitem) %> |
-  <%= link_to "Back to todoitems", todoitems_path %>
-
-  <%= button_to "Destroy this todoitem", @todoitem, method: :delete %>
+<div class='mt-5'>
+  <div class="container">
+    <div class="row">
+      <div class="col-2 p-0">
+        <%= link_to "Back to Todos", todoitems_path, class: "btn btn-outline-secondary" %>
+      </div>
+      <div class="col-2 p-0 offset-6">
+        <%= button_to "Destroy Todo", @todoitem, method: :delete, class: "btn btn-danger" %>
+      </div>
+      <div class="col-2 p-0">
+        <%= link_to "Edit Todo", edit_todoitem_path(@todoitem), class: "btn btn-primary w-100" %>
+      </div>
+    </div>
+  </div>
 </div>
