@@ -3,7 +3,8 @@ class TodoitemsController < ApplicationController
 
   # GET /todoitems or /todoitems.json
   def index
-    @todoitems = Todoitem.all
+    @todoitems = Todoitem.where(completed: false).order(updated_at: :desc)
+    @completed_todoitems = Todoitem.where(completed: true).order(updated_at: :desc)
   end
 
   # GET /todoitems/1 or /todoitems/1.json
@@ -12,7 +13,7 @@ class TodoitemsController < ApplicationController
 
   # GET /todoitems/new
   def new
-    @todoitem = Todoitem.new(completed: false)
+    @todoitem = Todoitem.new
   end
 
   # GET /todoitems/1/edit
