@@ -1,10 +1,14 @@
-<p style="color: green"><%= notice %></p>
+<% if notice.present? %>
+  <div class="alert alert-success" role="alert">
+    <%= notice %>
+  </div>
+<% end %>
 
 <h1 class="mb-5 mt-5">All Todos</h1>
 
 <%= link_to "Add Todo", new_todoitem_path, class:"btn btn-primary btn-lg mb-4 col-lg-2 offset-lg-10 col-md-3 offset-md-9 col-sm-4" %>
 
-<h2 class="mb-3">Pending ℹ️</h2>
+<h2 class="mb-3">ℹ️ Pending</h2>
 <table class="table table-striped table-bordered table-hover mb-5">
   <thead>
     <tr>
@@ -19,7 +23,7 @@
   <% end %>
 </table>
 
-<h2 class="mb-3">Completed ✅</h2>
+<h2 class="mb-3">✅ Completed</h2>
 <table class="table table-striped table-bordered table-hover">
   <thead>
     <tr>
