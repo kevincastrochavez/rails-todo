@@ -12,7 +12,7 @@ class TodoitemsController < ApplicationController
 
   # GET /todoitems/new
   def new
-    @todoitem = Todoitem.new
+    @todoitem = Todoitem.new(completed: false)
   end
 
   # GET /todoitems/1/edit
