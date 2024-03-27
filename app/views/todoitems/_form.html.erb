@@ -26,10 +26,12 @@
     <%= form.datetime_field :deadline, class:'form-control mb-4' %>
   </div>
 
-  <div>
-    <%= form.label :completed, class: "mb-1" %>
-    <%= form.check_box :completed, class: "mb-5 form-check-input ms-2" %>
-  </div>
+  <% unless todoitem.new_record? %>
+    <div>
+      <%= form.label :completed, class: "mb-1" %>
+      <%= form.check_box :completed, class: "mb-5 form-check-input ms-2" %>
+    </div>
+  <% end %>
 
   <div>
     <%= form.submit %>
