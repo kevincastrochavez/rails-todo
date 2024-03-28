@@ -3,8 +3,11 @@ class TodoitemsController < ApplicationController
 
   # GET /todoitems or /todoitems.json
   def index
+    sort_by = params[:sort_by]
+    sort_direction = sort_direction(sort_by)
     @todoitems = Todoitem.where(completed: false).order(updated_at: :desc)
     @completed_todoitems = Todoitem.where(completed: true).order(updated_at: :desc)
+    sort_todoitems(sort_by, sort_direction)
   end
 
   # GET /todoitems/1 or /todoitems/1.json
@@ -67,5 +70,36 @@ class TodoitemsController < ApplicationController
     # Only allow a list of trusted parameters through.
     def todoitem_params
       params.require(:todoitem).permit(:name, :description, :deadline, :completed)
+    end
+
+    # Sort todoitems by deadline and name
+    def sort_todoitems(sort_by, sort_direction)
+      case sort_by
+      when 'namePending'
+        @todoitems = sort_direction == 'asc' ? Todoitem.where(completed: false).order(name: :asc) : Todoitem.where(completed: false).order(name: :desc)
+      when 'nameCompleted'
+        @completed_todoitems = sort_direction == 'asc' ? Todoitem.where(completed: true).order(name: :asc) : Todoitem.where(completed: true).order(name: :desc)
+      when 'deadlinePending'
+        @todoitems = sort_direction == 'asc' ? Todoitem.where(completed: false).order(deadline: :asc) : Todoitem.where(completed: false).order(deadline: :desc)
+      when 'deadlineCompleted'
+        @completed_todoitems = sort_direction == 'asc' ? Todoitem.where(completed: true).order(deadline: :asc) : Todoitem.where(completed: true).order(deadline: :desc)
+      else
+        # Default sorting
+        @todoitems = @todoitems.order(created_at: :desc)
+        @completed_todoitems = @completed_todoitems.order(created_at: :desc)
+      end
+    end
+
+    # Set the sort direction
+    def sort_direction(sort_by)
+      if params[:sort_by] == sort_by && params[:sort_direction] == 'asc'
+        'asc'
+      else
+        'desc'
+      end
+    end
+
+    def toggle_direction(current_sort_by, target_sort_by)
+      current_sort_by == target_sort_by && params[:sort_direction] == 'asc' ? 'desc' : 'asc'
     end
 end

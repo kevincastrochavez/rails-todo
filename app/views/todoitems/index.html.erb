@@ -12,9 +12,17 @@
 <table class="table table-striped table-bordered table-hover mb-5">
   <thead>
     <tr>
-      <th><strong>Todo</strong></th>
+      <th>
+        <%= button_tag type: 'button', class: 'border-0 bg-transparent', onclick: "window.location.href='#{todoitems_path(sort_by: 'namePending', sort_direction: toggle_direction(params[:sort_by], 'namePending'))}'" do %>
+          <%= toggle_sort_direction('Name ▼', 'namePending') %>
+        <% end %>
+      </th>  
       <th><strong>Description</strong></th>
-      <th><strong>Deadline</strong></th>
+      <th>
+        <%= button_tag type: 'button', class: 'border-0 bg-transparent', onclick: "window.location.href='#{todoitems_path(sort_by: 'deadlinePending', sort_direction: toggle_direction(params[:sort_by], 'deadlinePending'))}'" do %>
+          <%= toggle_sort_direction('Deadline ▼', 'deadlinePending') %>
+        <% end %>
+      </th>
   </tr>
   </thead>
 
@@ -27,9 +35,17 @@
 <table class="table table-striped table-bordered table-hover">
   <thead>
     <tr>
-      <th><strong>Todo</strong></th>
+      <th>
+        <%= button_tag type: 'button', class: 'border-0 bg-transparent', onclick: "window.location.href='#{todoitems_path(sort_by: 'nameCompleted', sort_direction: toggle_direction(params[:sort_by], 'nameCompleted'))}'" do %>
+          <%= toggle_sort_direction('Name ▼', 'nameCompleted') %>
+        <% end %>
+      </th>  
       <th><strong>Description</strong></th>
-      <th><strong>Deadline</strong></th>
+      <th>
+        <%= button_tag type: 'button', class: 'border-0 bg-transparent', onclick: "window.location.href='#{todoitems_path(sort_by: 'deadlineCompleted', sort_direction: toggle_direction(params[:sort_by], 'deadlineCompleted'))}'" do %>
+          <%= toggle_sort_direction('Deadline ▼', 'deadlineCompleted') %>
+        <% end %>
+      </th>
   </tr>
   </thead>
 
