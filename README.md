@@ -1,1 +1,1 @@
-# Todo Application showcasing CRUD functionality
+# Todo Application showcasing CRUD functionality.
